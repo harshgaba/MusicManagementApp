@@ -5,6 +5,10 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
+def apikeyPropertiesFile = rootProject.file("apikey.properties")
+def apikeyProperties = new Properties()
+apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+
 android {
     compileSdk 31
 
@@ -19,6 +23,9 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        buildConfigField("String", "LastFMAPIKey", apikeyProperties['LastFMAPIKey'])
+
     }
     buildFeatures {
         dataBinding = true
@@ -30,6 +37,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
