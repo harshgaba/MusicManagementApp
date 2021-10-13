@@ -27,7 +27,7 @@ fun TopAlbum.toAlbum(): Album {
         artist = artist?.name,
         tags = null,
         albumImageUrl = image?.last()?.text,
-        trackNames = null,
+        tracks = null,
         summary = null,
         albumInfoLink = url,
         published = null

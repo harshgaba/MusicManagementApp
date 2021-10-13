@@ -3,6 +3,7 @@ package com.harsh.musicmanagementapp.data.remote.dto.album_info
 
 import com.google.gson.annotations.SerializedName
 import com.harsh.musicmanagementapp.domain.model.Album
+import com.harsh.musicmanagementapp.domain.model.Track
 
 data class AlbumInfoDto(
     @SerializedName("album")
@@ -17,7 +18,13 @@ fun AlbumInfoDto.toAlbum(): Album {
         artist = albumInfo?.artist,
         tags = albumInfo?.tags?.tag?.map { tag -> tag.name }?.toList(),
         albumImageUrl = albumInfo?.image?.last()?.text,
-        trackNames = albumInfo?.tracks?.track?.map { track -> track.name }?.toList(),
+        tracks = albumInfo?.tracks?.track?.map { track ->
+            Track(
+                name = track.name,
+                duration = track.duration,
+                url = track.url
+            )
+        }?.toList(),
         summary = albumInfo?.wiki?.summary,
         albumInfoLink = albumInfo?.url,
         published = albumInfo?.wiki?.published
