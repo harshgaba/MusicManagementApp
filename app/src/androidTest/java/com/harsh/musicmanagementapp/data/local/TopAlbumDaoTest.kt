@@ -45,11 +45,12 @@ class TopAlbumDaoTest {
 
     @Test
     fun insertTopAlbum() = runBlockingTest {
-        val topAlbum = Album(id = "1234",
+        val topAlbum = Album(tableId = 1,
+            id = "1234",
             name = "Moon Light",
             playCount = 34567,
             artist = "Diljit",
-            tags = listOf("Pop","Punjabi","Trance"),
+            tags = listOf<String>("Pop","Punjabi","Trance"),
             albumImageUrl = "https://imageDiljit.png",
             tracks = listOf<Track>(
                 Track(
@@ -70,11 +71,12 @@ class TopAlbumDaoTest {
 
     @Test
     fun deleteShoppingItem() = runBlockingTest {
-        val topAlbum = Album(id = "1234",
+        val topAlbum = Album(tableId = 1
+            ,id = "1234",
             name = "Moon Light",
             playCount = 34567,
             artist = "Diljit",
-            tags = listOf("Pop","Punjabi","Trance"),
+            tags = listOf<String>("Pop","Punjabi","Trance"),
             albumImageUrl = "https://imageDiljit.png",
             tracks = listOf<Track>(
                 Track(

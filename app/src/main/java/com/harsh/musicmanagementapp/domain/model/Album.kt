@@ -5,7 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "top_album")
 data class Album(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    val tableId:Int=0,
     val id: String?,
     val name: String?,
     val playCount: Int?,
