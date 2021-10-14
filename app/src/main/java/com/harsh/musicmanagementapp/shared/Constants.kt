@@ -6,4 +6,8 @@ object Constants {
 
     const val DATABASE_NAME = "top_album_db"
 
+
+    const val PARAM_ALBUM_ID = "albumId"
+    const val PARAM_ARTIST_ID = "artistId"
+
 }

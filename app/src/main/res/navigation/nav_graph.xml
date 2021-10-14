@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph">
+
+
+    <fragment
+        android:id="@+id/savedTopAlbumsFragment"
+        android:name="com.harsh.musicmanagementapp.presentation.saved_top_albums.SavedTopAlbumsFragment"
+        android:label="savedTopAlbumsFragment" >
+        <action
+            android:id="@+id/action_savedTopAlbumsFragment_to_searchArtistsFragment"
+            app:destination="@id/searchArtistsFragment" />
+        <action
+            android:id="@+id/action_savedTopAlbumsFragment_to_albumDetailsFragment"
+            app:destination="@id/albumDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchArtistsFragment"
+        android:name="com.harsh.musicmanagementapp.presentation.search_artists.SearchArtistsFragment"
+        android:label="SearchArtistsFragment" >
+        <action
+            android:id="@+id/action_searchArtistsFragment_to_topAlbumsListFragment"
+            app:destination="@id/topAlbumsListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/topAlbumsListFragment"
+        android:name="com.harsh.musicmanagementapp.presentation.top_albums.TopAlbumsListFragment"
+        android:label="TopAlbumsListFragment" >
+        <action
+            android:id="@+id/action_topAlbumsListFragment_to_albumDetailsFragment"
+            app:destination="@id/albumDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/albumDetailsFragment"
+        android:name="com.harsh.musicmanagementapp.presentation.album_details.AlbumDetailsFragment"
+        android:label="AlbumDetailsFragment" >
+    </fragment>
+</navigation>
