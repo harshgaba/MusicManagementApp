@@ -4,4 +4,6 @@ object Constants {
 
     const val BASE_URL = "https://ws.audioscrobbler.com/2.0/"
 
+    const val DATABASE_NAME = "top_album_db"
+
 }

@@ -1,14 +1,33 @@
 package com.harsh.musicmanagementapp.data.repository
 
+import androidx.lifecycle.LiveData
 import com.harsh.musicmanagementapp.BuildConfig.LastFMAPIKey
+import com.harsh.musicmanagementapp.data.local.TopAlbumDao
 import com.harsh.musicmanagementapp.data.remote.MusicApi
 import com.harsh.musicmanagementapp.data.remote.dto.album_info.AlbumInfoDto
 import com.harsh.musicmanagementapp.data.remote.dto.search.ArtistSearchDto
 import com.harsh.musicmanagementapp.data.remote.dto.top_albums.TopAlbumsDto
+import com.harsh.musicmanagementapp.domain.model.Album
 import com.harsh.musicmanagementapp.domain.repository.MusicRepository
 import javax.inject.Inject
 
-class MusicRepositoryImpl @Inject constructor(private val api: MusicApi) : MusicRepository {
+class MusicRepositoryImpl @Inject constructor(
+    private val topAlbumsDao: TopAlbumDao,
+    private val api: MusicApi
+) : MusicRepository {
+
+
+    override suspend fun insertTopAlbum(album: Album) {
+        topAlbumsDao.insertTopAlbum(album)
+    }
+
+    override suspend fun deleteTopAlbum(album: Album) {
+        topAlbumsDao.deleteTopAlbum(album)
+    }
+
+    override fun observeAllTopAlbums(): LiveData<List<Album>> {
+        return topAlbumsDao.observeAllTopAlbums()
+    }
 
     override suspend fun searchArtist(artist: String?): ArtistSearchDto {
         return api.searchArtist(getDefaultParametersMap().apply {
