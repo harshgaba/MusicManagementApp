@@ -79,8 +79,8 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/image_love_album"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="@dimen/album_save_button_width"
+                    android:layout_height="@dimen/album_save_button_height"
                     android:layout_marginStart="@dimen/distance_1x"
                     android:layout_marginEnd="@dimen/distance_1x"
                     android:layout_marginBottom="@dimen/album_image_top_bottom_margin"

@@ -35,4 +35,7 @@
     <dimen name="search_bar_height">48dp</dimen>
     <dimen name="search_button_height">48dp</dimen>
     <dimen name="search_button_width">48dp</dimen>
+
+    <dimen name="album_save_button_width">40dp</dimen>
+    <dimen name="album_save_button_height">40dp</dimen>
 </resources>
