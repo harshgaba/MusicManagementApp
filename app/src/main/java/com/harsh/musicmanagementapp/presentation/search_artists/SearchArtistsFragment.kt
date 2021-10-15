@@ -8,11 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.harsh.musicmanagementapp.R
-import com.harsh.musicmanagementapp.databinding.AlbumItemViewBinding
 import com.harsh.musicmanagementapp.databinding.ArtistItemViewBinding
-import com.harsh.musicmanagementapp.databinding.FragmentSavedTopAlbumsBinding
 import com.harsh.musicmanagementapp.databinding.FragmentSearchArtistsBinding
-import com.harsh.musicmanagementapp.domain.model.Album
 import com.harsh.musicmanagementapp.domain.model.Artist
 import com.harsh.musicmanagementapp.presentation.ui.recyclerview.RecyclerViewViewHolder
 import com.harsh.musicmanagementapp.shared.Constants

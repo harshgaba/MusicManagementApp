@@ -9,11 +9,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.harsh.musicmanagementapp.R
 import com.harsh.musicmanagementapp.databinding.AlbumItemViewBinding
-import com.harsh.musicmanagementapp.databinding.ArtistItemViewBinding
-import com.harsh.musicmanagementapp.databinding.FragmentSearchArtistsBinding
 import com.harsh.musicmanagementapp.databinding.FragmentTopAlbumsListBinding
 import com.harsh.musicmanagementapp.domain.model.Album
-import com.harsh.musicmanagementapp.domain.model.Artist
 import com.harsh.musicmanagementapp.presentation.ui.recyclerview.RecyclerViewViewHolder
 import com.harsh.musicmanagementapp.shared.Constants
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,7 +36,7 @@ class TopAlbumsListFragment : Fragment(R.layout.fragment_top_albums_list) {
                     with(binder) {
                         album = item
                         onClickItem = View.OnClickListener {
-                            navigateToAlbumDetail(item.id)
+                            navigateToAlbumDetail(item.artist, item.name)
                         }
                     }
 
@@ -52,11 +49,12 @@ class TopAlbumsListFragment : Fragment(R.layout.fragment_top_albums_list) {
         return binding.root
     }
 
-    private fun navigateToAlbumDetail(albumId: String?) {
+    private fun navigateToAlbumDetail(artist: String?, albumName: String?) {
         findNavController().navigate(
             R.id.action_topAlbumsListFragment_to_albumDetailsFragment,
             Bundle().apply {
-                putString(Constants.PARAM_ALBUM_ID, albumId)
+                putString(Constants.PARAM_ALBUM_NAME, albumName)
+                putString(Constants.PARAM_ARTIST_ID, artist)
             })
     }
 }

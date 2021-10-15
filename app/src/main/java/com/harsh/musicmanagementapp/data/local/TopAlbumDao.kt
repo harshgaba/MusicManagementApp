@@ -8,13 +8,13 @@ import com.harsh.musicmanagementapp.domain.model.Album
 interface TopAlbumDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertTopAlbum(album: Album)
+    suspend fun insertTopAlbum(album: Album?)
 
     @Delete
-    suspend fun deleteTopAlbum(album: Album)
+    suspend fun deleteTopAlbum(album: Album?)
 
-    @Query("SELECT * FROM top_album WHERE id = :id")
-    suspend fun getAlbumById(id: String?): Album?
+    @Query("SELECT * FROM top_album WHERE tableId = :tableId")
+    suspend fun getAlbumById(tableId: Int): Album?
 
 
     @Query("SELECT * FROM top_album")

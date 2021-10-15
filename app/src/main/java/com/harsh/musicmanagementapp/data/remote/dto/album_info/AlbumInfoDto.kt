@@ -12,7 +12,7 @@ data class AlbumInfoDto(
 
 fun AlbumInfoDto.toAlbum(): Album {
     return Album(
-        id = albumInfo?.mbid,
+        id = albumInfo?.mbid ,
         name = albumInfo?.name,
         playCount = albumInfo?.playcount?.toIntOrNull(),
         artist = albumInfo?.artist,
@@ -21,8 +21,11 @@ fun AlbumInfoDto.toAlbum(): Album {
         tracks = albumInfo?.tracks?.track?.map { track ->
             Track(
                 name = track.name,
-                duration = track.duration,
-                url = track.url
+                duration = track.duration?.let {
+                    if (track.duration <= 60) "{${track.duration} Sec}" else "{${(track.duration / 60)} Min}"
+                },
+                rank = track.attr?.rank,
+                artist = track.artist?.name
             )
         }?.toList(),
         summary = albumInfo?.wiki?.summary,

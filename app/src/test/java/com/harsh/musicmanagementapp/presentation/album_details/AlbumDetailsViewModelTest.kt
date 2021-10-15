@@ -78,7 +78,8 @@ class AlbumDetailsViewModelTest {
             )
         viewModel.insertTopAlbum(
             Album(
-                tableId = 1, id = "1234",
+                tableId=1,
+                id = "1234",
                 name = "Moon Light",
                 playCount = 34567,
                 artist = "Diljit",
@@ -87,8 +88,9 @@ class AlbumDetailsViewModelTest {
                 tracks = listOf<Track>(
                     Track(
                         name = "Black White",
-                        duration = 2,
-                        url = "https://imageDiljit.mp3"
+                        duration = "2 min",
+                        rank = 1,
+                        artist = "Diljit"
                     )
                 ),
                 summary = "New album",
@@ -105,7 +107,8 @@ class AlbumDetailsViewModelTest {
     @Test
     fun `delete top album, returns success`() {
       val album=Album(
-          tableId = 1, id = "1234",
+          tableId=1,
+           id = "1234",
           name = "Moon Light",
           playCount = 34567,
           artist = "Diljit",
@@ -114,8 +117,9 @@ class AlbumDetailsViewModelTest {
           tracks = listOf<Track>(
               Track(
                   name = "Black White",
-                  duration = 2,
-                  url = "https://imageDiljit.mp3"
+                  duration = "2 min",
+                  rank = 1,
+                  artist = "Diljit"
               )
           ),
           summary = "New album",
@@ -140,7 +144,8 @@ class AlbumDetailsViewModelTest {
     @Test
     fun `get Album Details from database, returns error`() {
         val album = Album(
-            tableId = 1, id = "1234",
+            tableId=1,
+             id = "1234",
             name = "Moon Light",
             playCount = 34567,
             artist = "Diljit",
@@ -149,8 +154,9 @@ class AlbumDetailsViewModelTest {
             tracks = listOf<Track>(
                 Track(
                     name = "Black White",
-                    duration = 2,
-                    url = "https://imageDiljit.mp3"
+                    duration = "2 min",
+                    rank = 1,
+                    artist = "Diljit"
                 )
             ),
             summary = "New album",
@@ -164,7 +170,7 @@ class AlbumDetailsViewModelTest {
                 SavedStateHandle()
             )
         viewModel.insertTopAlbum(album)
-        viewModel.getAlbumInfoFromDB("1234")
+        viewModel.getAlbumInfoFromDB(1)
         val value = viewModel.errorMessage.getOrAwaitValueTest()
         assertThat(value.getContentIfNotHandled()).isEqualTo("Something went wrong!")
     }
@@ -172,7 +178,8 @@ class AlbumDetailsViewModelTest {
     @Test
     fun `get Album Details from database, returns details`() {
         val album = Album(
-            tableId = 1, id = "1234",
+            tableId=1,
+             id = "1234",
             name = "Moon Light",
             playCount = 34567,
             artist = "Diljit",
@@ -181,8 +188,9 @@ class AlbumDetailsViewModelTest {
             tracks = listOf<Track>(
                 Track(
                     name = "Black White",
-                    duration = 2,
-                    url = "https://imageDiljit.mp3"
+                    duration = "2 min",
+                    rank = 1,
+                    artist = "Diljit"
                 )
             ),
             summary = "New album",
@@ -196,7 +204,7 @@ class AlbumDetailsViewModelTest {
                 SavedStateHandle()
             )
         viewModel.insertTopAlbum(album)
-        viewModel.getAlbumInfoFromDB("1234")
+        viewModel.getAlbumInfoFromDB(1)
         val value = viewModel.album.getOrAwaitValueTest()
         assertThat(value.getContentIfNotHandled()?.id).isEqualTo("1234")
     }
@@ -209,7 +217,7 @@ class AlbumDetailsViewModelTest {
                 TopAlbumActionsUseCase(FakeMusicRepository(FakeRepoStatus.THROW_ERROR)),
                 SavedStateHandle()
             )
-        viewModel.getAlbumInfoFromDB("1234")
+        viewModel.getAlbumInfoFromDB(1)
         val value = viewModel.album.getOrAwaitValueTest()
         assertThat(value.getContentIfNotHandled()).isEqualTo(null)
     }

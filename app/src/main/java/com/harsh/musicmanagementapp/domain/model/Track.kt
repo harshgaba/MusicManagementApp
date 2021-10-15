@@ -8,6 +8,7 @@ data class Track(
     @PrimaryKey(autoGenerate = true)
     val tableId:Int=0,
     val name: String?,
-    val duration: Int?,
-    val url: String?
+    val duration: String?,
+    val artist: String?,
+    val rank:Int?
 )

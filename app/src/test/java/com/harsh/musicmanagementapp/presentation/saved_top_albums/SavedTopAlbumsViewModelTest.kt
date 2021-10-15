@@ -40,8 +40,8 @@ class SavedTopAlbumsViewModelTest {
             )
 
         viewModel.getAllSavedTopAlbums()
-        val value = viewModel.topAlbums.getOrAwaitValueTest()
-        assertThat(value.getContentIfNotHandled()?.size).isEqualTo(2)
+        val value = viewModel.topAlbums?.getOrAwaitValueTest()
+        assertThat(value?.size).isEqualTo(2)
     }
 
     @Test
@@ -52,8 +52,8 @@ class SavedTopAlbumsViewModelTest {
             )
 
         viewModel.getAllSavedTopAlbums()
-        val value = viewModel.topAlbums.getOrAwaitValueTest()
-        assertThat(value.getContentIfNotHandled()?.size).isEqualTo(0)
+        val value = viewModel.topAlbums?.getOrAwaitValueTest()
+        assertThat(value?.size).isEqualTo(0)
     }
 
 }

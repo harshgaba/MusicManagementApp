@@ -1,5 +1,6 @@
 package com.harsh.musicmanagementapp.domain.use_case.db_action_top_album
 
+import androidx.lifecycle.LiveData
 import com.harsh.musicmanagementapp.domain.model.Album
 import com.harsh.musicmanagementapp.domain.repository.MusicRepository
 import com.harsh.musicmanagementapp.shared.Resource
@@ -15,6 +16,7 @@ class TopAlbumActionsUseCase @Inject constructor(private val repository: MusicRe
             repository.insertTopAlbum(album)
             emit(Resource.Success<Unit>(Unit))
         } catch (e: Exception) {
+            e.printStackTrace()
             emit(
                 Resource.Error<Unit>(
                     e.localizedMessage ?: "An unexpected error occurred"
@@ -28,6 +30,7 @@ class TopAlbumActionsUseCase @Inject constructor(private val repository: MusicRe
             repository.deleteTopAlbum(album)
             emit(Resource.Success<Unit>(Unit))
         } catch (e: Exception) {
+            e.printStackTrace()
             emit(
                 Resource.Error<Unit>(
                     e.localizedMessage ?: "An unexpected error occurred"
@@ -36,7 +39,7 @@ class TopAlbumActionsUseCase @Inject constructor(private val repository: MusicRe
         }
     }
 
-    fun getAlbumById(id: String?): Flow<Resource<Album?>> = flow {
+    fun getAlbumById(id: Int): Flow<Resource<Album?>> = flow {
         try {
             val album = repository.getAlbumById(id)
             emit(Resource.Success<Album?>(album))
@@ -49,15 +52,15 @@ class TopAlbumActionsUseCase @Inject constructor(private val repository: MusicRe
         }
     }
 
-    fun getTopAlbums(): Flow<Resource<List<Album>?>> = flow {
+    fun getTopAlbums(): Flow<Resource<LiveData<List<Album>>>> = flow {
 
         try {
-            emit(Resource.Loading<List<Album>?>())
-            val topAlbums = repository.observeAllTopAlbums().value
-            emit(Resource.Success<List<Album>?>(topAlbums))
+            emit(Resource.Loading<LiveData<List<Album>>>())
+            val topAlbums = repository.observeAllTopAlbums()
+            emit(Resource.Success<LiveData<List<Album>>>(topAlbums))
         } catch (e: Exception) {
             emit(
-                Resource.Error<List<Album>?>(
+                Resource.Error<LiveData<List<Album>>>(
                     e.localizedMessage ?: "An unexpected error occurred"
                 )
             )

@@ -46,7 +46,7 @@ class TopAlbumDaoTest {
     @Test
     fun insertTopAlbum() = runBlockingTest {
         val topAlbum = Album(
-            tableId = 1,
+            tableId=1,
             id = "1234",
             name = "Moon Light",
             playCount = 34567,
@@ -56,8 +56,9 @@ class TopAlbumDaoTest {
             tracks = listOf<Track>(
                 Track(
                     name = "Black White",
-                    duration = 2,
-                    url = "https://imageDiljit.mp3"
+                    duration = "2 min",
+                    rank = 1,
+                    artist = "Diljit"
                 )
             ),
             summary = "New album",
@@ -74,7 +75,8 @@ class TopAlbumDaoTest {
     @Test
     fun deleteTopAlbum() = runBlockingTest {
         val topAlbum = Album(
-            tableId = 1, id = "1234",
+            tableId=1,
+            id = "1234",
             name = "Moon Light",
             playCount = 34567,
             artist = "Diljit",
@@ -83,8 +85,9 @@ class TopAlbumDaoTest {
             tracks = listOf<Track>(
                 Track(
                     name = "Black White",
-                    duration = 2,
-                    url = "https://imageDiljit.mp3"
+                    duration = "2 min",
+                    rank = 1,
+                    artist = "Diljit"
                 )
             ),
             summary = "New album",
@@ -102,7 +105,8 @@ class TopAlbumDaoTest {
     @Test
     fun getAlbumById() = runBlockingTest {
         val topAlbum = Album(
-            tableId = 1, id = "1234",
+            tableId=1,
+             id = "1234",
             name = "Moon Light",
             playCount = 34567,
             artist = "Diljit",
@@ -111,8 +115,9 @@ class TopAlbumDaoTest {
             tracks = listOf<Track>(
                 Track(
                     name = "Black White",
-                    duration = 2,
-                    url = "https://imageDiljit.mp3"
+                    duration = "2 min",
+                    rank = 1,
+                    artist = "Diljit"
                 )
             ),
             summary = "New album",
@@ -121,7 +126,7 @@ class TopAlbumDaoTest {
         )
         dao.insertTopAlbum(topAlbum)
 
-        val album = dao.getAlbumById("1234")
+        val album = dao.getAlbumById(1)
 
         assertThat("1234".equals(album?.id, true))
     }

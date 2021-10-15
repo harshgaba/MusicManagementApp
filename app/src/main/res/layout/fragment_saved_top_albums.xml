@@ -55,7 +55,7 @@
             android:paddingBottom="@dimen/double_padding"
             android:scrollbars="none"
             android:visibility="@{viewModel.isLoading.contentIfNotHandled ? View.GONE : View.VISIBLE}"
-            app:items="@{viewModel.topAlbums.contentIfNotHandled}"
+            app:items="@{viewModel.topAlbums}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_constraintBottom_toBottomOf="parent"

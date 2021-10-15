@@ -32,8 +32,8 @@ class FakeMusicRepository constructor(private val status: FakeRepoStatus) : Musi
         refreshLiveData()
     }
 
-    override suspend fun getAlbumById(id: String?): Album? {
-        return topAlbums.find { it.id.equals(id, true) }
+    override suspend fun getAlbumById(id: Int): Album? {
+        return topAlbums.find { it.tableId==id }
     }
 
     override fun observeAllTopAlbums(): LiveData<List<Album>> {
@@ -156,7 +156,8 @@ class FakeMusicRepository constructor(private val status: FakeRepoStatus) : Musi
 
     private fun createMockAlbum(): Album {
         return Album(
-            tableId = 1, id = "1234",
+            tableId=1,
+            id = "1234",
             name = "Moon Light",
             playCount = 34567,
             artist = "Diljit",
@@ -165,8 +166,9 @@ class FakeMusicRepository constructor(private val status: FakeRepoStatus) : Musi
             tracks = listOf<Track>(
                 Track(
                     name = "Black White",
-                    duration = 2,
-                    url = "https://imageDiljit.mp3"
+                    duration = "2 min",
+                    rank = 1,
+                    artist = "Diljit"
                 )
             ),
             summary = "New album",

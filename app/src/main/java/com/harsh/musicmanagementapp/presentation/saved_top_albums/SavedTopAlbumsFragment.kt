@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.harsh.musicmanagementapp.R
 import com.harsh.musicmanagementapp.databinding.AlbumItemViewBinding
@@ -37,7 +36,7 @@ class SavedTopAlbumsFragment : Fragment(R.layout.fragment_saved_top_albums) {
                     with(binder) {
                         album = item
                         onClickItem = View.OnClickListener {
-                            navigateToAlbumDetail(item.id)
+                            navigateToAlbumDetail(item.tableId)
                         }
                     }
 
@@ -53,11 +52,11 @@ class SavedTopAlbumsFragment : Fragment(R.layout.fragment_saved_top_albums) {
         return binding.root
     }
 
-    private fun navigateToAlbumDetail(albumId: String?) {
+    private fun navigateToAlbumDetail(albumId: Int) {
         findNavController().navigate(
             R.id.action_savedTopAlbumsFragment_to_albumDetailsFragment,
             Bundle().apply {
-                putString(PARAM_ALBUM_ID, albumId)
+                putInt(PARAM_ALBUM_ID, albumId)
             })
     }
 

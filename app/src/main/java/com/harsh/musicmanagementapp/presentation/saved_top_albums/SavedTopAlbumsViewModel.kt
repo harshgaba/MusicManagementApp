@@ -3,6 +3,7 @@ package com.harsh.musicmanagementapp.presentation.saved_top_albums
 import androidx.lifecycle.*
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.harsh.musicmanagementapp.domain.model.Album
 import com.harsh.musicmanagementapp.domain.use_case.db_action_top_album.TopAlbumActionsUseCase
 import com.harsh.musicmanagementapp.shared.Event
 import com.harsh.musicmanagementapp.shared.Resource
@@ -15,8 +16,7 @@ import javax.inject.Inject
 class SavedTopAlbumsViewModel @Inject constructor(
     private val topAlbumActionsUseCase: TopAlbumActionsUseCase) : ViewModel() {
 
-    private val _topAlbums = MutableLiveData<Event<List<Any>>>()
-    val topAlbums: LiveData<Event<List<Any>>> = _topAlbums
+    var topAlbums: LiveData<List<Album>>? = null
 
     private val _errorMessage = MutableLiveData<Event<String>>()
     val errorMessage: LiveData<Event<String>> = _errorMessage
@@ -32,7 +32,7 @@ class SavedTopAlbumsViewModel @Inject constructor(
         topAlbumActionsUseCase.getTopAlbums().onEach { result ->
             when (result) {
                 is Resource.Success -> {
-                    _topAlbums.postValue(Event(result.data ?: emptyList()))
+                    topAlbums= result.data
                     _isLoading.postValue(Event(false))
                 }
                 is Resource.Error -> {

@@ -29,5 +29,8 @@
 
     <dimen name="button_corner_radius">@dimen/corner_radius_2x</dimen>
 
+    <dimen name="track_title_margin_start">@dimen/distance_1.5x</dimen>
+    <dimen name="track_subtitle_margin_top">@dimen/distance_0.5x</dimen>
+
 
 </resources>

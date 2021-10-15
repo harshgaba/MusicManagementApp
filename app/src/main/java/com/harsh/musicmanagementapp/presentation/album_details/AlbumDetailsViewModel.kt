@@ -31,16 +31,17 @@ class AlbumDetailsViewModel @Inject constructor(
     private val _albumSaved = MutableLiveData<Event<Boolean>>()
     val albumSaved: LiveData<Event<Boolean>> = _albumSaved
 
+    private var albumSaveStatus: Boolean = false
     private var selectedArtist: String? = null
     private var selectedAlbumName: String? = null
-    private var selectedAlbumId: String? = null
+    private var selectedAlbumId: Int = -1
     private var topAlbum: Album? = null
 
     init {
         savedStateHandle.get<String>(Constants.PARAM_ARTIST_ID)?.let { artist ->
             selectedArtist = artist
         }
-        savedStateHandle.get<String>(Constants.PARAM_ALBUM_ID)?.let { albumId ->
+        savedStateHandle.get<Int>(Constants.PARAM_ALBUM_ID)?.let { albumId ->
             selectedAlbumId = albumId
         }
         savedStateHandle.get<String>(Constants.PARAM_ALBUM_NAME)?.let { albumName ->
@@ -48,12 +49,12 @@ class AlbumDetailsViewModel @Inject constructor(
         }
 
 
-        if (!selectedAlbumId.isNullOrBlank()) getAlbumInfoFromDB(selectedAlbumId)
+        if (selectedAlbumId>0){ getAlbumInfoFromDB(selectedAlbumId)}
         else getAlbumInfo(selectedArtist, selectedAlbumName)
     }
 
 
-     fun getAlbumInfo(artist: String?, albumName: String?) {
+    fun getAlbumInfo(artist: String?, albumName: String?) {
         getAlbumInfoUseCase(artist, albumName).onEach { result ->
             when (result) {
                 is Resource.Success -> {
@@ -72,13 +73,15 @@ class AlbumDetailsViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-     fun getAlbumInfoFromDB(albumId: String?) {
+    fun getAlbumInfoFromDB(albumId: Int) {
         topAlbumActionsUseCase.getAlbumById(albumId).onEach { result ->
             when (result) {
                 is Resource.Success -> {
                     topAlbum = result.data
                     _album.postValue(Event(topAlbum))
                     _isLoading.postValue(Event(false))
+                    albumSaveStatus = true
+                    _albumSaved.postValue(Event(albumSaveStatus))
                 }
                 is Resource.Error -> {
                     _isLoading.postValue(Event(false))
@@ -91,35 +94,49 @@ class AlbumDetailsViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun insertTopAlbum(album: Album){
-        topAlbumActionsUseCase.insertTopAlbum(album).onEach { result ->
-            when (result) {
-                is Resource.Success -> {
-                    _albumSaved.postValue(Event(true))
+    fun insertTopAlbum(album: Album?) {
+        album?.let {
+            topAlbumActionsUseCase.insertTopAlbum(album).onEach { result ->
+                when (result) {
+                    is Resource.Success -> {
+                        albumSaveStatus = true
+                        _albumSaved.postValue(Event(albumSaveStatus))
+                    }
+                    is Resource.Error -> {
+                        //TODO , we are not notifying to user for now, may be later show a toast
+                    }
+                    is Resource.Loading -> {
+                        //NO NEED TO HANDLE
+                    }
                 }
-                is Resource.Error -> {
-                    //TODO , we are not notifying to user for now, may be later show a toast
-                }
-                is Resource.Loading -> {
-                    //NO NEED TO HANDLE
-                }
-            }
-        }.launchIn(viewModelScope)
+            }.launchIn(viewModelScope)
+        }
     }
 
-    fun deleteTopAlbum(album: Album){
-        topAlbumActionsUseCase.deleteTopAlbum(album).onEach { result ->
-            when (result) {
-                is Resource.Success -> {
-                    _albumSaved.postValue(Event(false))
+    fun deleteTopAlbum(album: Album?) {
+        album?.let {
+            topAlbumActionsUseCase.deleteTopAlbum(album).onEach { result ->
+                when (result) {
+                    is Resource.Success -> {
+                        albumSaveStatus = false
+                        _albumSaved.postValue(Event(albumSaveStatus))
+                    }
+                    is Resource.Error -> {
+                        //TODO , we are not notifying to user for now, may be later show a toast
+                    }
+                    is Resource.Loading -> {
+                        //NO NEED TO HANDLE
+                    }
                 }
-                is Resource.Error -> {
-                    //TODO , we are not notifying to user for now, may be later show a toast
-                }
-                is Resource.Loading -> {
-                    //NO NEED TO HANDLE
-                }
-            }
-        }.launchIn(viewModelScope)
+            }.launchIn(viewModelScope)
+        }
+    }
+
+    fun manageAlbumLove() {
+        if (albumSaveStatus) {
+            deleteTopAlbum(topAlbum)
+        } else {
+            insertTopAlbum(topAlbum)
+        }
     }
 }
