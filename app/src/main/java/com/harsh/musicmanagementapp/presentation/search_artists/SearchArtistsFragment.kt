@@ -1,9 +1,12 @@
 package com.harsh.musicmanagementapp.presentation.search_artists
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -48,6 +51,10 @@ class SearchArtistsFragment : Fragment(R.layout.fragment_search_artists) {
         }
         binding.onSearchClick = View.OnClickListener {
             viewModel.searchArtists(binding.searchBar.editTextSearch.text.toString())
+        }
+
+        if(binding.searchBar.editTextSearch.requestFocus()) {
+            (activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
         }
         return binding.root
     }
