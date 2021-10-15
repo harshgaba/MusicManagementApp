@@ -8,6 +8,7 @@ object Constants {
 
 
     const val PARAM_ALBUM_ID = "albumId"
+    const val PARAM_ALBUM_NAME = "albumName"
     const val PARAM_ARTIST_ID = "artistId"
 
 }

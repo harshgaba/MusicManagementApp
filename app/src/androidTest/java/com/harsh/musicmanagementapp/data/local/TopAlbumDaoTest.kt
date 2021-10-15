@@ -45,18 +45,20 @@ class TopAlbumDaoTest {
 
     @Test
     fun insertTopAlbum() = runBlockingTest {
-        val topAlbum = Album(tableId = 1,
+        val topAlbum = Album(
+            tableId = 1,
             id = "1234",
             name = "Moon Light",
             playCount = 34567,
             artist = "Diljit",
-            tags = listOf<String>("Pop","Punjabi","Trance"),
+            tags = listOf<String>("Pop", "Punjabi", "Trance"),
             albumImageUrl = "https://imageDiljit.png",
             tracks = listOf<Track>(
                 Track(
                     name = "Black White",
                     duration = 2,
-                    url = "https://imageDiljit.mp3")
+                    url = "https://imageDiljit.mp3"
+                )
             ),
             summary = "New album",
             albumInfoLink = "https://imageDiljit/moonlight",
@@ -70,19 +72,20 @@ class TopAlbumDaoTest {
     }
 
     @Test
-    fun deleteShoppingItem() = runBlockingTest {
-        val topAlbum = Album(tableId = 1
-            ,id = "1234",
+    fun deleteTopAlbum() = runBlockingTest {
+        val topAlbum = Album(
+            tableId = 1, id = "1234",
             name = "Moon Light",
             playCount = 34567,
             artist = "Diljit",
-            tags = listOf<String>("Pop","Punjabi","Trance"),
+            tags = listOf<String>("Pop", "Punjabi", "Trance"),
             albumImageUrl = "https://imageDiljit.png",
             tracks = listOf<Track>(
                 Track(
                     name = "Black White",
                     duration = 2,
-                    url = "https://imageDiljit.mp3")
+                    url = "https://imageDiljit.mp3"
+                )
             ),
             summary = "New album",
             albumInfoLink = "https://imageDiljit/moonlight",
@@ -95,5 +98,33 @@ class TopAlbumDaoTest {
 
         assertThat(allTopAlbum).doesNotContain(topAlbum)
     }
+
+    @Test
+    fun getAlbumById() = runBlockingTest {
+        val topAlbum = Album(
+            tableId = 1, id = "1234",
+            name = "Moon Light",
+            playCount = 34567,
+            artist = "Diljit",
+            tags = listOf<String>("Pop", "Punjabi", "Trance"),
+            albumImageUrl = "https://imageDiljit.png",
+            tracks = listOf<Track>(
+                Track(
+                    name = "Black White",
+                    duration = 2,
+                    url = "https://imageDiljit.mp3"
+                )
+            ),
+            summary = "New album",
+            albumInfoLink = "https://imageDiljit/moonlight",
+            published = "03 Mar 2010, 16:48"
+        )
+        dao.insertTopAlbum(topAlbum)
+
+        val album = dao.getAlbumById("1234")
+
+        assertThat("1234".equals(album?.id, true))
+    }
+
 
 }

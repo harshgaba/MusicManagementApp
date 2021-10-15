@@ -2,6 +2,7 @@ package com.harsh.musicmanagementapp.di
 
 import android.content.Context
 import androidx.room.Room
+import com.harsh.musicmanagementapp.data.local.TopAlbumDao
 import com.harsh.musicmanagementapp.data.local.TopAlbumDatabase
 import com.harsh.musicmanagementapp.data.remote.MusicApi
 import com.harsh.musicmanagementapp.data.repository.MusicRepositoryImpl
@@ -66,7 +67,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideFleetRepository(api: MusicApi): MusicRepository {
-        return MusicRepositoryImpl(api)
+    fun provideFleetRepository(topAlbumsDao: TopAlbumDao, api: MusicApi): MusicRepository {
+        return MusicRepositoryImpl(topAlbumsDao,api)
     }
 }

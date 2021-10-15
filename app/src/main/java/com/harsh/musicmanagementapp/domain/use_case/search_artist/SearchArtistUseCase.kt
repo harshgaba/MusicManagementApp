@@ -16,7 +16,6 @@ class SearchArtistUseCase @Inject constructor(private val repository: MusicRepos
             emit(Resource.Loading<List<Artist>?>())
             val artists =
                 repository.searchArtist(artist).results?.artistMatches?.searchedArtist?.map { it.toArtist() }
-
             emit(Resource.Success<List<Artist>?>(artists))
         } catch (e: Exception) {
             emit(

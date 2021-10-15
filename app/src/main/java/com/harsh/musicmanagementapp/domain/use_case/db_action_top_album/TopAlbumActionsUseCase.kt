@@ -37,7 +37,20 @@ class TopAlbumActionsUseCase @Inject constructor(private val repository: MusicRe
         }
     }
 
-    fun getTopAlbums(artist: String?, albumName: String?): Flow<Resource<List<Album>?>> = flow {
+    fun getAlbumById(id: String?): Flow<Resource<Album?>> = flow {
+        try {
+            val album = repository.getAlbumById(id)
+            emit(Resource.Success<Album?>(album))
+        } catch (e: Exception) {
+            emit(
+                Resource.Error<Album?>(
+                    e.localizedMessage ?: "An unexpected error occurred"
+                )
+            )
+        }
+    }
+
+    fun getTopAlbums(): Flow<Resource<List<Album>?>> = flow {
 
         try {
             emit(Resource.Loading<List<Album>?>())

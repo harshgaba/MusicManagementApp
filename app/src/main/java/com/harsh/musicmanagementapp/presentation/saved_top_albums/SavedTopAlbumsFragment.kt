@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.harsh.musicmanagementapp.R
 import com.harsh.musicmanagementapp.shared.Constants.PARAM_ALBUM_ID

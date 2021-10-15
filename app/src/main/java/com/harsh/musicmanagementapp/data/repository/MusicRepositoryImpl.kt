@@ -25,6 +25,10 @@ class MusicRepositoryImpl @Inject constructor(
         topAlbumsDao.deleteTopAlbum(album)
     }
 
+    override suspend fun getAlbumById(id: String?): Album? =
+        topAlbumsDao.getAlbumById(id)
+
+
     override fun observeAllTopAlbums(): LiveData<List<Album>> {
         return topAlbumsDao.observeAllTopAlbums()
     }

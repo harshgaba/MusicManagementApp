@@ -23,7 +23,7 @@ fun SearchedArtist.toArtist(): Artist {
     return Artist(
         id = mbid,
         name = name,
-        imageUrl = image?.last()?.text,
+        imageUrl = if (!image.isNullOrEmpty()) image.last().text else null,
         listeners = listeners,
         moreInfoLink = url
     )

@@ -14,6 +14,8 @@ interface MusicRepository {
 
     suspend fun deleteTopAlbum(album: Album)
 
+    suspend fun getAlbumById(id: String?): Album?
+
     fun observeAllTopAlbums(): LiveData<List<Album>>
 
     suspend fun searchArtist(artist: String?): ArtistSearchDto

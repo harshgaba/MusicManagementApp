@@ -13,6 +13,10 @@ interface TopAlbumDao {
     @Delete
     suspend fun deleteTopAlbum(album: Album)
 
+    @Query("SELECT * FROM top_album WHERE id = :id")
+    suspend fun getAlbumById(id: String?): Album?
+
+
     @Query("SELECT * FROM top_album")
     fun observeAllTopAlbums(): LiveData<List<Album>>
 }

@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.harsh.musicmanagementapp.R
-import com.harsh.musicmanagementapp.shared.Constants
 
 class AlbumDetailsFragment : Fragment(R.layout.fragment_album_details){
 
