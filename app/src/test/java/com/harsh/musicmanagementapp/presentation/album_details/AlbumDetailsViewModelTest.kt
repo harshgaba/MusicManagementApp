@@ -78,7 +78,7 @@ class AlbumDetailsViewModelTest {
             )
         viewModel.insertTopAlbum(
             Album(
-                tableId=1,
+
                 id = "1234",
                 name = "Moon Light",
                 playCount = 34567,
@@ -107,7 +107,7 @@ class AlbumDetailsViewModelTest {
     @Test
     fun `delete top album, returns success`() {
       val album=Album(
-          tableId=1,
+
            id = "1234",
           name = "Moon Light",
           playCount = 34567,
@@ -144,7 +144,7 @@ class AlbumDetailsViewModelTest {
     @Test
     fun `get Album Details from database, returns error`() {
         val album = Album(
-            tableId=1,
+
              id = "1234",
             name = "Moon Light",
             playCount = 34567,
@@ -170,7 +170,7 @@ class AlbumDetailsViewModelTest {
                 SavedStateHandle()
             )
         viewModel.insertTopAlbum(album)
-        viewModel.getAlbumInfoFromDB(1)
+        viewModel.getAlbumInfoFromDB("Moon Light")
         val value = viewModel.errorMessage.getOrAwaitValueTest()
         assertThat(value.getContentIfNotHandled()).isEqualTo("Something went wrong!")
     }
@@ -178,7 +178,7 @@ class AlbumDetailsViewModelTest {
     @Test
     fun `get Album Details from database, returns details`() {
         val album = Album(
-            tableId=1,
+
              id = "1234",
             name = "Moon Light",
             playCount = 34567,
@@ -204,7 +204,7 @@ class AlbumDetailsViewModelTest {
                 SavedStateHandle()
             )
         viewModel.insertTopAlbum(album)
-        viewModel.getAlbumInfoFromDB(1)
+        viewModel.getAlbumInfoFromDB("Moon Light")
         val value = viewModel.album.getOrAwaitValueTest()
         assertThat(value.getContentIfNotHandled()?.id).isEqualTo("1234")
     }
@@ -217,7 +217,7 @@ class AlbumDetailsViewModelTest {
                 TopAlbumActionsUseCase(FakeMusicRepository(FakeRepoStatus.THROW_ERROR)),
                 SavedStateHandle()
             )
-        viewModel.getAlbumInfoFromDB(1)
+        viewModel.getAlbumInfoFromDB("Moon Light")
         val value = viewModel.album.getOrAwaitValueTest()
         assertThat(value.getContentIfNotHandled()).isEqualTo(null)
     }

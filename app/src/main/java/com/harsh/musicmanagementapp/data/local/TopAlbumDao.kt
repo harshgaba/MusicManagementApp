@@ -13,8 +13,8 @@ interface TopAlbumDao {
     @Delete
     suspend fun deleteTopAlbum(album: Album?)
 
-    @Query("SELECT * FROM top_album WHERE tableId = :tableId")
-    suspend fun getAlbumById(tableId: Int): Album?
+    @Query("SELECT * FROM top_album WHERE name = :name")
+    suspend fun getAlbumByName(name: String): Album?
 
 
     @Query("SELECT * FROM top_album")

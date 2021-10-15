@@ -22,7 +22,7 @@ data class TopAlbum(
 fun TopAlbum.toAlbum(): Album {
     return Album(
         id = mbid,
-        name = name,
+        name = name ?:"",
         playCount = playCount,
         artist = artist?.name,
         tags = null,

@@ -13,6 +13,7 @@ import com.harsh.musicmanagementapp.databinding.FragmentSavedTopAlbumsBinding
 import com.harsh.musicmanagementapp.domain.model.Album
 import com.harsh.musicmanagementapp.presentation.ui.recyclerview.RecyclerViewViewHolder
 import com.harsh.musicmanagementapp.shared.Constants.PARAM_ALBUM_ID
+import com.harsh.musicmanagementapp.shared.Constants.PARAM_ALBUM_NAME
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,7 +37,7 @@ class SavedTopAlbumsFragment : Fragment(R.layout.fragment_saved_top_albums) {
                     with(binder) {
                         album = item
                         onClickItem = View.OnClickListener {
-                            navigateToAlbumDetail(item.tableId)
+                            navigateToAlbumDetail(item.name)
                         }
                     }
 
@@ -52,11 +53,11 @@ class SavedTopAlbumsFragment : Fragment(R.layout.fragment_saved_top_albums) {
         return binding.root
     }
 
-    private fun navigateToAlbumDetail(albumId: Int) {
+    private fun navigateToAlbumDetail(albumName: String) {
         findNavController().navigate(
             R.id.action_savedTopAlbumsFragment_to_albumDetailsFragment,
             Bundle().apply {
-                putInt(PARAM_ALBUM_ID, albumId)
+                putString(PARAM_ALBUM_NAME, albumName)
             })
     }
 

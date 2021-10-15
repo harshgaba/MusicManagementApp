@@ -49,7 +49,9 @@ class AlbumDetailsViewModel @Inject constructor(
         }
 
 
-        if (selectedAlbumId>0){ getAlbumInfoFromDB(selectedAlbumId)}
+        if (selectedArtist.isNullOrBlank()){
+            selectedAlbumName?.let { getAlbumInfoFromDB(it) }
+        }
         else getAlbumInfo(selectedArtist, selectedAlbumName)
     }
 
@@ -73,8 +75,8 @@ class AlbumDetailsViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun getAlbumInfoFromDB(albumId: Int) {
-        topAlbumActionsUseCase.getAlbumById(albumId).onEach { result ->
+    fun getAlbumInfoFromDB(name: String) {
+        topAlbumActionsUseCase.getAlbumByName(name).onEach { result ->
             when (result) {
                 is Resource.Success -> {
                     topAlbum = result.data

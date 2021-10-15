@@ -39,9 +39,9 @@ class TopAlbumActionsUseCase @Inject constructor(private val repository: MusicRe
         }
     }
 
-    fun getAlbumById(id: Int): Flow<Resource<Album?>> = flow {
+    fun getAlbumByName(name: String): Flow<Resource<Album?>> = flow {
         try {
-            val album = repository.getAlbumById(id)
+            val album = repository.getAlbumByName(name)
             emit(Resource.Success<Album?>(album))
         } catch (e: Exception) {
             emit(

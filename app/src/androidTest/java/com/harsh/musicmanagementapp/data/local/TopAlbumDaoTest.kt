@@ -46,7 +46,6 @@ class TopAlbumDaoTest {
     @Test
     fun insertTopAlbum() = runBlockingTest {
         val topAlbum = Album(
-            tableId=1,
             id = "1234",
             name = "Moon Light",
             playCount = 34567,
@@ -75,7 +74,6 @@ class TopAlbumDaoTest {
     @Test
     fun deleteTopAlbum() = runBlockingTest {
         val topAlbum = Album(
-            tableId=1,
             id = "1234",
             name = "Moon Light",
             playCount = 34567,
@@ -105,7 +103,7 @@ class TopAlbumDaoTest {
     @Test
     fun getAlbumById() = runBlockingTest {
         val topAlbum = Album(
-            tableId=1,
+
              id = "1234",
             name = "Moon Light",
             playCount = 34567,
@@ -126,7 +124,7 @@ class TopAlbumDaoTest {
         )
         dao.insertTopAlbum(topAlbum)
 
-        val album = dao.getAlbumById(1)
+        val album = dao.getAlbumByName("Moon Light")
 
         assertThat("1234".equals(album?.id, true))
     }

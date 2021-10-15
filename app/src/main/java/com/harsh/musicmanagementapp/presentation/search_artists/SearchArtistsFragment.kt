@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -53,8 +54,11 @@ class SearchArtistsFragment : Fragment(R.layout.fragment_search_artists) {
             viewModel.searchArtists(binding.searchBar.editTextSearch.text.toString())
         }
 
-        if(binding.searchBar.editTextSearch.requestFocus()) {
-            (activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+        if (binding.searchBar.editTextSearch.requestFocus()) {
+            (activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager)?.toggleSoftInput(
+                InputMethodManager.SHOW_FORCED,
+                InputMethodManager.HIDE_IMPLICIT_ONLY
+            );
         }
         return binding.root
     }
@@ -65,5 +69,13 @@ class SearchArtistsFragment : Fragment(R.layout.fragment_search_artists) {
             Bundle().apply {
                 putString(Constants.PARAM_ARTIST_ID, artist)
             })
+    }
+
+    override fun onPause() {
+        super.onPause()
+        (activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager)?.hideSoftInputFromWindow(
+            view?.windowToken,
+            0
+        )
     }
 }

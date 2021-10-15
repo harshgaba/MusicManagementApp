@@ -13,7 +13,7 @@ data class AlbumInfoDto(
 fun AlbumInfoDto.toAlbum(): Album {
     return Album(
         id = albumInfo?.mbid ,
-        name = albumInfo?.name,
+        name = albumInfo?.name ?:"",
         playCount = albumInfo?.playcount?.toIntOrNull(),
         artist = albumInfo?.artist,
         tags = albumInfo?.tags?.tag?.map { tag -> tag.name }?.toList(),
