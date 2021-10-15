@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- DroidSansMono -->
+    <style name="DroidSansMono" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/droid_sans_mono</item>
+        <item name="android:textColor">@color/teal_700</item>
+    </style>
+
+    <style name="DroidSansMono.24_8">
+        <item name="android:textSize">24dp</item>
+        <item name="android:lineSpacingExtra">6dp</item>
+    </style>
+
+    <style name="DroidSansMono.14_6">
+        <item name="android:textSize">14dp</item>
+        <item name="android:lineSpacingExtra">6dp</item>
+    </style>
+
+    <style name="DroidSansMono.14_6.Bold">
+        <item name="android:textSize">14dp</item>
+        <item name="android:lineSpacingExtra">6dp</item>
+        <item name="android:textStyle">bold</item>
+
+    </style>
+
+    <style name="DroidSansMono.12_4">
+        <item name="android:textSize">12dp</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+    </style>
+
+    <style name="DroidSansMono.12_4.Description">
+        <item name="android:textColor">@color/carbon</item>
+    </style>
+
+    <style name="DroidSansMono.10_4">
+        <item name="android:textSize">10dp</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+    </style>
+
+    <style name="DroidSansMono.10_4.Description">
+        <item name="android:textColor">@color/carbon</item>
+    </style>
+</resources>

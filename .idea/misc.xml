@@ -3,11 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/button_atlantic_background.xml" value="0.26296296296296295" />
+        <entry key="app/src/main/res/drawable-v24/ic_error_breakdown.xml" value="0.3541666666666667" />
+        <entry key="app/src/main/res/drawable/ic_search.xml" value="0.26296296296296295" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3380208333333333" />
+        <entry key="app/src/main/res/layout/activity_music.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/album_item_view.xml" value="0.327445652173913" />
+        <entry key="app/src/main/res/layout/artist_item_view.xml" value="0.327445652173913" />
+        <entry key="app/src/main/res/layout/divider_layout.xml" value="0.327445652173913" />
+        <entry key="app/src/main/res/layout/error_layout.xml" value="0.327445652173913" />
         <entry key="app/src/main/res/layout/fragment_album_details.xml" value="0.327445652173913" />
         <entry key="app/src/main/res/layout/fragment_saved_top_albums.xml" value="0.327445652173913" />
         <entry key="app/src/main/res/layout/fragment_search_artists.xml" value="0.327445652173913" />
         <entry key="app/src/main/res/layout/fragment_top_albums.xml" value="0.327445652173913" />
+        <entry key="app/src/main/res/layout/fragment_top_albums_list.xml" value="0.322463768115942" />
+        <entry key="app/src/main/res/layout/search_bar_layout.xml" value="0.322463768115942" />
       </map>
     </option>
   </component>

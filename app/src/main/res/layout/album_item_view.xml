@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="album"
+            type="com.harsh.musicmanagementapp.domain.model.Album" />
+
+        <variable
+            name="onClickItem"
+            type="View.OnClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:onClick="@{onClickItem}"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/double_padding">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_album_cover"
+            android:layout_width="@dimen/album_image_size"
+            android:layout_height="@dimen/album_image_size"
+            android:layout_marginStart="@dimen/album_image_left_right_margin"
+            android:layout_marginBottom="@dimen/album_image_top_bottom_margin"
+            app:layout_constraintEnd_toStartOf="@+id/textview_album_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@{album.albumImageUrl}"
+            tools:background="@drawable/ic_launcher_foreground" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textview_album_name"
+            style="@style/DroidSansMono.14_6.Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/album_title_margin_start"
+            android:text="@{album.name}"
+            app:layout_constraintStart_toEndOf="@+id/image_album_cover"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Moon Light" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textview_artist"
+            style="@style/DroidSansMono.12_4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/album_title_margin_start"
+            android:layout_marginTop="@dimen/album_subtitle_margin_top"
+            android:gravity="center"
+            android:text="@{album.artist}"
+            android:textColor="@color/cod"
+            app:layout_constraintStart_toEndOf="@+id/image_album_cover"
+            app:layout_constraintTop_toBottomOf="@+id/textview_album_name"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Diljit" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textview_tags"
+            style="@style/DroidSansMono.10_4.Description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/album_position_margin_top"
+            android:layout_marginEnd="@dimen/distance_1.5x"
+            android:gravity="center_vertical"
+            android:text="@{album.tags.toString()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image_album_cover"
+            app:layout_constraintTop_toBottomOf="@+id/textview_artist"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Tags" />
+
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textview_play_counts"
+            style="@style/DroidSansMono.10_4.Description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/album_title_margin_start"
+            android:gravity="center"
+            android:text="@{album.playCount.toString()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Play count" />
+
+
+        <include
+            android:id="@+id/dividerLine"
+            layout="@layout/divider_layout"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/divider_height"
+            android:layout_marginStart="@dimen/double_padding"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_album_cover" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

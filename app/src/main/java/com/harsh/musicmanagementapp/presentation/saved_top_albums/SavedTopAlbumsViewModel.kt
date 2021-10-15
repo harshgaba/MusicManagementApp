@@ -1,9 +1,8 @@
 package com.harsh.musicmanagementapp.presentation.saved_top_albums
 
+import androidx.lifecycle.*
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.harsh.musicmanagementapp.domain.use_case.db_action_top_album.TopAlbumActionsUseCase
 import com.harsh.musicmanagementapp.shared.Event
 import com.harsh.musicmanagementapp.shared.Resource
@@ -14,8 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SavedTopAlbumsViewModel @Inject constructor(
-    private val topAlbumActionsUseCase: TopAlbumActionsUseCase
-) : ViewModel() {
+    private val topAlbumActionsUseCase: TopAlbumActionsUseCase) : ViewModel() {
 
     private val _topAlbums = MutableLiveData<Event<List<Any>>>()
     val topAlbums: LiveData<Event<List<Any>>> = _topAlbums

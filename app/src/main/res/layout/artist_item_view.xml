@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="artist"
+            type="com.harsh.musicmanagementapp.domain.model.Artist" />
+
+        <variable
+            name="onClickItem"
+            type="View.OnClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:onClick="@{onClickItem}"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/double_padding">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_artist_cover"
+            android:layout_width="@dimen/artist_image_size"
+            android:layout_height="@dimen/artist_image_size"
+            android:layout_marginStart="@dimen/artist_image_left_right_margin"
+            android:layout_marginBottom="@dimen/artist_image_top_bottom_margin"
+            app:layout_constraintEnd_toStartOf="@+id/textview_listeners_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@{artist.imageUrl}"
+            tools:background="@drawable/ic_launcher_foreground" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textview_listeners_name"
+            style="@style/DroidSansMono.14_6.Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/artist_title_margin_start"
+            android:text="@{artist.name}"
+            app:layout_constraintStart_toEndOf="@+id/image_artist_cover"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Diljit" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textview_listeners"
+            style="@style/DroidSansMono.12_4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/artist_title_margin_start"
+            android:layout_marginTop="@dimen/artist_subtitle_margin_top"
+            android:gravity="center"
+            android:text="@{artist.listeners}"
+            android:textColor="@color/cod"
+            app:layout_constraintStart_toEndOf="@+id/image_artist_cover"
+            app:layout_constraintTop_toBottomOf="@+id/textview_listeners_name"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="123456" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textview_more_info"
+            style="@style/DroidSansMono.10_4.Description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/artist_position_margin_top"
+            android:layout_marginEnd="@dimen/distance_1.5x"
+            android:gravity="center_vertical"
+            android:text="@{artist.moreInfoLink}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image_artist_cover"
+            app:layout_constraintTop_toBottomOf="@+id/textview_listeners"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="More Info Link" />
+
+
+        <include
+            android:id="@+id/dividerLine"
+            layout="@layout/divider_layout"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/divider_height"
+            android:layout_marginStart="@dimen/double_padding"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textview_more_info" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

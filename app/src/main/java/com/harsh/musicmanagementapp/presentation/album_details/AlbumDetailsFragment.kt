@@ -5,7 +5,9 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.harsh.musicmanagementapp.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AlbumDetailsFragment : Fragment(R.layout.fragment_album_details){
 
     private val viewModel: AlbumDetailsViewModel by viewModels()

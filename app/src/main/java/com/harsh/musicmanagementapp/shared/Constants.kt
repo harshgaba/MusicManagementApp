@@ -2,7 +2,7 @@ package com.harsh.musicmanagementapp.shared
 
 object Constants {
 
-    const val BASE_URL = "https://ws.audioscrobbler.com/2.0/"
+    const val BASE_URL = "https://ws.audioscrobbler.com/"
 
     const val DATABASE_NAME = "top_album_db"
 

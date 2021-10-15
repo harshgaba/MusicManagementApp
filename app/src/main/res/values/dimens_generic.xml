@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- General purpose distances for aligning elements on the screen. To be used with baseline grid 8dp spacing method.
+         For more info please check: https://material.io/design/layout/spacing-methods.html#baseline-grid -->
+    <dimen name="distance_0x">0dp</dimen>
+    <dimen name="distance_0.5x">4dp</dimen>
+    <dimen name="distance_1x">8dp</dimen>
+    <dimen name="distance_1.5x">12dp</dimen>
+    <dimen name="distance_2x">16dp</dimen>
+    <dimen name="distance_2.5x">20dp</dimen>
+    <dimen name="distance_3x">24dp</dimen>
+    <dimen name="distance_4x">32dp</dimen>
+    <dimen name="distance_6x">48dp</dimen>
+    <dimen name="distance_7x">56dp</dimen>
+    <dimen name="distance_8x">64dp</dimen>
+    <dimen name="distance_9x">72dp</dimen>
+
+    <dimen name="corner_radius_2x">16dp</dimen>
+
+
+</resources>

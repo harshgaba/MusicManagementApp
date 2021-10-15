@@ -1,6 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="onSearchBarClick"
+            type="View.OnClickListener" />
+
+        <variable
+            name="viewModel"
+            type="com.harsh.musicmanagementapp.presentation.saved_top_albums.SavedTopAlbumsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/concrete"
+        android:gravity="center_vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_search"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_margin="@dimen/distance_2x"
+            android:src="@drawable/ic_search"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/search_bar"
+            style="@style/DroidSansMono.14_6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/distance_2x"
+            android:background="@drawable/search_bar_background"
+            android:drawablePadding="@dimen/distance_0.5x"
+            android:gravity="center_vertical"
+            android:hint="Search Artist"
+            android:onClick="@{onSearchBarClick}"
+            app:layout_constraintStart_toEndOf="@+id/image_search"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.harsh.musicmanagementapp.presentation.ui.recyclerview.RecyclerView
+            android:id="@+id/album_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/concrete"
+            android:clipToPadding="false"
+            android:paddingTop="@dimen/double_padding"
+            android:paddingBottom="@dimen/double_padding"
+            android:scrollbars="none"
+            android:visibility="@{viewModel.isLoading.contentIfNotHandled ? View.GONE : View.VISIBLE}"
+            app:items="@{viewModel.topAlbums.contentIfNotHandled}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_bar"
+            tools:listitem="@layout/album_item_view" />
+
+        <ProgressBar
+            android:id="@+id/loading_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/purple_700"
+            android:indeterminateTintMode="src_atop"
+            android:visibility="@{viewModel.isLoading.contentIfNotHandled ? View.VISIBLE : View.GONE,default=gone}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            layout="@layout/error_layout"
+            android:visibility="@{viewModel.errorMessage.contentIfNotHandled==null ? View.GONE : View.VISIBLE, default=gone}"
+            app:message="@{viewModel.errorMessage.contentIfNotHandled}" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

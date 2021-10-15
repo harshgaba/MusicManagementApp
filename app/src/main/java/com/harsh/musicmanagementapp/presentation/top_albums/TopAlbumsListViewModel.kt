@@ -31,6 +31,7 @@ class TopAlbumsListViewModel @Inject constructor(
         savedStateHandle.get<String>(Constants.PARAM_ARTIST_ID)?.let { artist ->
             selectedArtist = artist
         }
+        getTopAlbums(artist = selectedArtist)
     }
 
     fun getTopAlbums(artist: String?) {

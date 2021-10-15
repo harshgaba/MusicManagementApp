@@ -8,13 +8,13 @@ import retrofit2.http.QueryMap
 
 interface MusicApi {
 
-    @GET("/")
+    @GET("/2.0/")
     suspend fun searchArtist(@QueryMap searchQueryMap: Map<String, String?>) : ArtistSearchDto
 
-    @GET("/")
+    @GET("/2.0/")
     suspend fun getAlbumInfo(@QueryMap requestQueryMap: Map<String, String?>) : AlbumInfoDto
 
-    @GET("/")
+    @GET("/2.0/")
     suspend fun getTopAlbums(@QueryMap requestQueryMap: Map<String, String?>) :TopAlbumsDto
 
 }

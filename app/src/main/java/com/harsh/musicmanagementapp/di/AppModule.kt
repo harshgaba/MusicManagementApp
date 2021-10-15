@@ -7,6 +7,7 @@ import com.harsh.musicmanagementapp.data.local.TopAlbumDatabase
 import com.harsh.musicmanagementapp.data.remote.MusicApi
 import com.harsh.musicmanagementapp.data.repository.MusicRepositoryImpl
 import com.harsh.musicmanagementapp.domain.repository.MusicRepository
+import com.harsh.musicmanagementapp.domain.use_case.db_action_top_album.TopAlbumActionsUseCase
 import com.harsh.musicmanagementapp.shared.Constants
 import com.harsh.musicmanagementapp.shared.Constants.DATABASE_NAME
 import dagger.Module
