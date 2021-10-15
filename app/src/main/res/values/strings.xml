@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MusicManagementApp</string>
+    <string name="default_empty_saved_albums_message">You haven\'t like any album yet!\nPlease search your favorite artist.</string>
+    <string name="album_details_play_count">Play count :</string>
+    <string name="album_details_published_on">Published on :</string>
+    <string name="album_details_tracks">Tracks</string>
+    <string name="search_artist">Search Artist</string>
 </resources>

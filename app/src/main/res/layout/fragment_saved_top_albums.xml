@@ -22,27 +22,22 @@
         android:background="@color/concrete"
         android:gravity="center_vertical">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_search"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
-            android:layout_margin="@dimen/distance_2x"
-            android:src="@drawable/ic_search"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/search_bar"
-            style="@style/DroidSansMono.14_6"
+            style="@style/DroidSansMono.14_6.Bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/distance_2x"
             android:background="@drawable/search_bar_background"
-            android:drawablePadding="@dimen/distance_0.5x"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="@dimen/distance_1x"
             android:gravity="center_vertical"
-            android:hint="Search Artist"
             android:onClick="@{onSearchBarClick}"
-            app:layout_constraintStart_toEndOf="@+id/image_search"
+            android:padding="@dimen/distance_1x"
+            android:text="@string/search_artist"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.harsh.musicmanagementapp.presentation.ui.recyclerview.RecyclerView
@@ -79,6 +74,16 @@
             layout="@layout/error_layout"
             android:visibility="@{viewModel.errorMessage.contentIfNotHandled==null ? View.GONE : View.VISIBLE, default=gone}"
             app:message="@{viewModel.errorMessage.contentIfNotHandled}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/DroidSansMono.12_4.Description"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/distance_3x"
+            android:gravity="center"
+            android:text="@string/default_empty_saved_albums_message"
+            android:visibility="@{viewModel.topAlbums.size()==0 ? View.VISIBLE : View.GONE, default=gone}"
+            app:layout_constraintTop_toBottomOf="@id/search_bar" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -20,237 +20,266 @@
 
     </data>
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
+        android:layout_height="wrap_content"
+        android:background="@color/concrete"
+        android:layout_marginBottom="@dimen/activity_vertical_margin">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/activity_vertical_margin">
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:visibility="@{viewModel.isLoading.contentIfNotHandled  ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/image_album_cover"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginBottom="@dimen/album_image_top_bottom_margin"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@{viewModel.album.contentIfNotHandled.albumImageUrl}"
-                tools:background="@drawable/ic_launcher_foreground" />
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_album_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginBottom="@dimen/album_image_top_bottom_margin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@{viewModel.album.contentIfNotHandled.albumImageUrl}"
+                    tools:background="@drawable/ic_launcher_foreground" />
 
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textview_album_name"
-                style="@style/DroidSansMono.24_8"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/album_title_margin_start"
-                android:text="@{viewModel.album.contentIfNotHandled.name}"
-                app:layout_constraintEnd_toStartOf="@+id/image_love_album"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/image_album_cover"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:text="Moon Light" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textview_album_name"
+                    style="@style/DroidSansMono.24_8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/album_title_margin_start"
+                    android:text="@{viewModel.album.contentIfNotHandled.name}"
+                    app:layout_constraintEnd_toStartOf="@+id/image_love_album"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/image_album_cover"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="Moon Light" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textview_artist"
-                style="@style/DroidSansMono.14_6.Bold"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/album_title_margin_start"
-                android:layout_marginTop="@dimen/album_subtitle_margin_top"
-                android:text="@{viewModel.album.contentIfNotHandled.artist}"
-                android:textColor="@color/cod"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textview_album_name"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:text="Diljit" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textview_artist"
+                    style="@style/DroidSansMono.14_6.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/album_title_margin_start"
+                    android:layout_marginTop="@dimen/album_subtitle_margin_top"
+                    android:text="@{viewModel.album.contentIfNotHandled.artist}"
+                    android:textColor="@color/cod"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textview_album_name"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="Diljit" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/image_love_album"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="@dimen/distance_1x"
-                android:layout_marginEnd="@dimen/distance_1x"
-                android:layout_marginBottom="@dimen/album_image_top_bottom_margin"
-                android:onClick="@{onSaveClick}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/image_album_cover"
-                app:layout_constraintVertical_chainStyle="packed"
-                app:srcCompat="@{viewModel.albumSaved.contentIfNotHandled ? R.drawable.ic_heart_fill : R.drawable.ic_heart_empty }"
-                tools:background="@drawable/ic_launcher_foreground" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_love_album"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/distance_1x"
+                    android:layout_marginEnd="@dimen/distance_1x"
+                    android:layout_marginBottom="@dimen/album_image_top_bottom_margin"
+                    android:onClick="@{onSaveClick}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/image_album_cover"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:srcCompat="@{viewModel.albumSaved.contentIfNotHandled ? R.drawable.ic_heart_fill : R.drawable.ic_heart_empty }"
+                    tools:background="@drawable/ic_launcher_foreground" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textview_tags"
-                style="@style/DroidSansMono.12_4.Description"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/album_position_margin_top"
-                android:layout_marginEnd="@dimen/distance_1.5x"
-                android:text="@{viewModel.album.contentIfNotHandled.tags.toString()}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textview_artist"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:text="Tags" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textview_tags"
+                    style="@style/DroidSansMono.12_4.Description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/album_position_margin_top"
+                    android:layout_marginEnd="@dimen/distance_1.5x"
+                    android:text="@{viewModel.album.contentIfNotHandled.tags.toString()}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textview_artist"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="Tags" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textview_play_count_label"
-                style="@style/DroidSansMono.10_4.Description"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/album_position_margin_top"
-                android:layout_marginEnd="@dimen/distance_1.5x"
-                android:text="Play count :"
-                android:visibility="@{viewModel.album.contentIfNotHandled.published==null ? View.GONE:View.VISIBLE}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textview_tags"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:text="Play count" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textview_play_count_label"
+                    style="@style/DroidSansMono.10_4.Description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/album_position_margin_top"
+                    android:layout_marginEnd="@dimen/distance_1.5x"
+                    android:text="@string/album_details_play_count"
+                    android:visibility="@{viewModel.album.contentIfNotHandled.published==null ? View.GONE:View.VISIBLE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textview_tags"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="Play count" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textview_play_counts"
-                style="@style/DroidSansMono.12_4.Description"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/album_position_margin_top"
-                android:layout_marginEnd="@dimen/distance_1.5x"
-                android:text="@{viewModel.album.contentIfNotHandled.playCount.toString()}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textview_play_count_label"
-                app:layout_constraintTop_toBottomOf="@+id/textview_tags"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:text="345678" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textview_play_counts"
+                    style="@style/DroidSansMono.12_4.Description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/album_position_margin_top"
+                    android:layout_marginEnd="@dimen/distance_1.5x"
+                    android:text="@{viewModel.album.contentIfNotHandled.playCount.toString()}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textview_play_count_label"
+                    app:layout_constraintTop_toBottomOf="@+id/textview_tags"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="345678" />
 
-            <include
-                android:id="@+id/dividerLine"
-                layout="@layout/divider_layout"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/divider_height"
-                android:layout_marginStart="@dimen/double_padding"
-                android:layout_marginTop="@dimen/distance_1x"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textview_play_counts" />
+                <include
+                    android:id="@+id/dividerLine"
+                    layout="@layout/divider_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/divider_height"
+                    android:layout_marginStart="@dimen/double_padding"
+                    android:layout_marginTop="@dimen/distance_1x"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textview_play_counts" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textview_published_label"
-                style="@style/DroidSansMono.10_4.Description"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/album_position_margin_top"
-                android:layout_marginEnd="@dimen/distance_1.5x"
-                android:text="Published on :"
-                android:visibility="@{viewModel.album.contentIfNotHandled.published==null ? View.GONE:View.VISIBLE}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dividerLine"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:text="Published on :" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textview_published_label"
+                    style="@style/DroidSansMono.10_4.Description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/album_position_margin_top"
+                    android:layout_marginEnd="@dimen/distance_1.5x"
+                    android:text="@string/album_details_published_on"
+                    android:visibility="@{viewModel.album.contentIfNotHandled.published==null ? View.GONE:View.VISIBLE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dividerLine"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="Published on :" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textview_published"
-                style="@style/DroidSansMono.10_4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/album_position_margin_top"
-                android:layout_marginEnd="@dimen/distance_1.5x"
-                android:text="@{viewModel.album.contentIfNotHandled.published}"
-                android:textColor="@color/clay"
-                android:visibility="@{viewModel.album.contentIfNotHandled.published==null ? View.GONE:View.VISIBLE}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textview_published_label"
-                app:layout_constraintTop_toBottomOf="@+id/dividerLine"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:text="23-Dec-2014" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textview_published"
+                    style="@style/DroidSansMono.10_4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/album_position_margin_top"
+                    android:layout_marginEnd="@dimen/distance_1.5x"
+                    android:text="@{viewModel.album.contentIfNotHandled.published}"
+                    android:textColor="@color/clay"
+                    android:visibility="@{viewModel.album.contentIfNotHandled.published==null ? View.GONE:View.VISIBLE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textview_published_label"
+                    app:layout_constraintTop_toBottomOf="@+id/dividerLine"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="23-Dec-2014" />
 
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textview_summary"
-                style="@style/DroidSansMono.10_4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/album_position_margin_top"
-                android:layout_marginEnd="@dimen/distance_1.5x"
-                android:text="@{viewModel.album.contentIfNotHandled.summary}"
-                android:textColor="@color/clay"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textview_published_label"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:text="Summary" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textview_summary"
+                    style="@style/DroidSansMono.10_4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/album_position_margin_top"
+                    android:layout_marginEnd="@dimen/distance_1.5x"
+                    android:text="@{viewModel.album.contentIfNotHandled.summary}"
+                    android:textColor="@color/clay"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textview_published_label"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="Summary" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textview_know_more"
-                style="@style/DroidSansMono.14_6.Bold"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/album_position_margin_top"
-                android:layout_marginEnd="@dimen/distance_1.5x"
-                android:text="Wanna know more, follow below link"
-                android:textColor="@color/cod"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textview_summary"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:text="Wanna know more, follow below link" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textview_know_more"
+                    style="@style/DroidSansMono.14_6.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/album_position_margin_top"
+                    android:layout_marginEnd="@dimen/distance_1.5x"
+                    android:text="Wanna know more, follow below link"
+                    android:textColor="@color/cod"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textview_summary"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="Wanna know more, follow below link" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textview_more_info_link"
-                style="@style/DroidSansMono.12_4.Description"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/album_position_margin_top"
-                android:layout_marginEnd="@dimen/distance_1.5x"
-                android:text="@{viewModel.album.contentIfNotHandled.albumInfoLink}"
-                android:textColor="@color/teal_200"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textview_know_more"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:text="More info" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textview_more_info_link"
+                    style="@style/DroidSansMono.12_4.Description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/album_position_margin_top"
+                    android:layout_marginEnd="@dimen/distance_1.5x"
+                    android:text="@{viewModel.album.contentIfNotHandled.albumInfoLink}"
+                    android:textColor="@color/teal_200"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textview_know_more"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="More info" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textview_tracks"
-                style="@style/DroidSansMono.14_6.Bold"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/album_position_margin_top"
-                android:layout_marginEnd="@dimen/distance_1.5x"
-                android:text="Tracks"
-                android:textColor="@color/cod"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textview_more_info_link"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:text="Tracks" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textview_tracks"
+                    style="@style/DroidSansMono.14_6.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/album_position_margin_top"
+                    android:layout_marginEnd="@dimen/distance_1.5x"
+                    android:text="@string/album_details_tracks"
+                    android:textColor="@color/cod"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textview_more_info_link"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="Tracks" />
 
-            <com.harsh.musicmanagementapp.presentation.ui.recyclerview.RecyclerView
-                android:id="@+id/track_recyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:background="@color/white"
-                android:clipToPadding="false"
-                android:nestedScrollingEnabled="false"
-                android:paddingTop="@dimen/double_padding"
-                android:paddingBottom="@dimen/double_padding"
-                android:scrollbars="none"
-                app:items="@{viewModel.album.contentIfNotHandled.tracks}"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                app:layout_constraintTop_toBottomOf="@+id/textview_tracks"
-                tools:listitem="@layout/track_item_view" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+                <com.harsh.musicmanagementapp.presentation.ui.recyclerview.RecyclerView
+                    android:id="@+id/track_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@color/white"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false"
+                    android:paddingTop="@dimen/double_padding"
+                    android:paddingBottom="@dimen/double_padding"
+                    android:scrollbars="none"
+                    app:items="@{viewModel.album.contentIfNotHandled.tracks}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    app:layout_constraintTop_toBottomOf="@+id/textview_tracks"
+                    tools:listitem="@layout/track_item_view" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </ScrollView>
+
+        <ProgressBar
+            android:id="@+id/loading_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/purple_700"
+            android:indeterminateTintMode="src_atop"
+            android:visibility="@{viewModel.isLoading.contentIfNotHandled ? View.VISIBLE : View.GONE,default=gone}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            layout="@layout/error_layout"
+            android:visibility="@{viewModel.errorMessage.contentIfNotHandled==null ? View.GONE : View.VISIBLE, default=gone}"
+            app:message="@{viewModel.errorMessage.contentIfNotHandled}" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
